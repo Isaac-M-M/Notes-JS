@@ -9,9 +9,10 @@ h1{
     text-align: center;
 }
 #contenedor-principal{
-    width: 80%;
-    height: 80vh;
+    width: 90%;
+    height: 90vh;
     margin: 0 auto;
+    margin-top: 5vh;
     
     display: flex;
     flex-wrap: wrap;
@@ -32,13 +33,14 @@ h1{
     align-items: center;
 }
 
-#contenedor-menu h2{
-    
+#contenedor-texto{
+    outline: none;
+    border: 0;
 }
 
+
 #contenedor-menu button{
-    justify-content: center;
-    width: 60%;
+    width: 50%;
     
 }
 
@@ -80,6 +82,7 @@ h1{
     padding-left: 1rem;
     padding-right: 1rem;
     border-radius: 2rem;
+    transition: all 1500ms;
 
     display: flex;
     flex-wrap: wrap;
@@ -90,4 +93,19 @@ h1{
 
 .cerrar-nota{
 cursor: pointer;
+}
+
+#contenedor-mensaje{
+    font-size: 0.9rem;
+    color: rgb(161, 6, 6);
+    
+}
+
+#no-tarea{
+    font-weight: 100;
+
+}
+.color-alarma::placeholder{
+    color: rgb(219, 11, 11);
+
 }

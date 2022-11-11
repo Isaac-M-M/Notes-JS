@@ -1,3 +1,6 @@
+//añadir fecha/hora de cada creación de tarea al inicio de la nota
+//añadir botón que elimine todas las notas con confirmación (poner icono)
+//si se introduce un espacio tampoco se da por válido
 
 
 //identificación de elementos
@@ -7,10 +10,15 @@ const btnAnadir = document.querySelector("#btn-enviar");
 const cuadroNotas = document.querySelector("#contenedor-notas");
 const cerrarNota = document.querySelector(".cerrar-nota");
 const noTarea = document.querySelector("#no-tarea");
+const contenedorMensaje = document.querySelector("#contenedor-mensaje");
+const textoTarea = document.querySelector("#texto-no-tarea");
+
+let contadorNotas = 0;
 
 // crear nota
 let crearNota = () => {
 
+    
     let nota = document.createElement("div");
     nota.setAttribute("class", "nota-anadida");
     nota.innerText= texto.value ;
@@ -26,6 +34,10 @@ let crearNota = () => {
 // eliminar nota
     cerrar.addEventListener("click", ()=>{
         nota.style.display ="none";
+        contadorNotas -- ;
+        if (contadorNotas == 0){
+            textoTarea.style.display="block";
+        }
          }
      )
    
@@ -33,6 +45,7 @@ let crearNota = () => {
 
     texto.value = "";
     texto.focus();
+
 };
 
 // pulsar botón añadir
@@ -40,13 +53,29 @@ let crearNota = () => {
 btnAnadir.addEventListener("click", ()=>{
 
     //añadir texto a cuadroNotas
-    crearNota();
-    // quitar texto  "Todavía no tienes ninguna tarea"
-    if (cuadroNotas.childElementCount == 2){
-        cuadroNotas.removeChild( noTarea );
-    }
+
+    if (texto.value != "" && texto.value != " "){
+        contenedorMensaje.innerText= "";
+        crearNota();
+        texto.setAttribute("placeholder", "Introduce tu tarea");
+        texto.classList.remove("color-alarma");
+        contadorNotas++;
+        // quitar texto  "Todavía no tienes ninguna tarea"
+        if (contadorNotas > 0){
+            //cuadroNotas.removeChild( noTarea );
+            textoTarea.style.display="none";
+        }
+        
+}
+else{
+    texto.value = "";
+    texto.focus();
+    texto.setAttribute("placeholder", "Introduce una tarea!");
+    texto.classList.add("color-alarma");
+    //contenedorMensaje.innerText ="! No has introducido texto";
+}
 });
 
-// pulsar botón X para cerrar nota
+
 
 
